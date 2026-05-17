@@ -22,3 +22,11 @@ def test_final(mock_current_rate: int) -> None:
     mock_current_rate.return_value = 9.5
     result = cryptocurrency_action(10)
     assert result == "Do nothing"
+
+
+@patch("app.main.get_exchange_rate_prediction")
+def test_cryptocurrency_equal_high_boundary(mock_current_rate: int) -> None:
+    mock_current_rate.return_value = 10.5
+    result = cryptocurrency_action(10)
+
+    assert result == "Do nothing"
